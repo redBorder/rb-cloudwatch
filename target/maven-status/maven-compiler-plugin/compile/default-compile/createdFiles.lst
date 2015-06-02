@@ -1,0 +1,6 @@
+rb_cloudwatch/CloudwatchConnector.class
+rb_cloudwatch/MetricaImpl.class
+rb_cloudwatch/MetricJSON.class
+rb_cloudwatch/Metrica.class
+rb_cloudwatch/main_cw.class
+rb_cloudwatch/JSONHandler.class
