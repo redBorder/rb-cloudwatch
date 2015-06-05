@@ -1,9 +1,9 @@
-package rb_cloudwatch;
+package rb_cloudwatch.cloudwatch;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.cloudwatch.AmazonCloudWatch;
-import com.amazonaws.services.cloudwatch.AmazonCloudWatchAsyncClient;
+import com.amazonaws.services.cloudwatch.AmazonCloudWatchClient;
 import com.amazonaws.services.cloudwatch.model.*;
 
 import java.util.Collection;
@@ -21,14 +21,13 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
     //Logger for this class
     private static final Logger logger = Logger.getLogger(CloudwatchConnectorImpl.class.getName());
 
+    /* Constructors */
     public CloudwatchConnectorImpl() {
-        this.client = new AmazonCloudWatchAsyncClient();
+        this.client = new AmazonCloudWatchClient();
     }
-/* Constructors */
-
 
     @Override
-    public boolean sendMetric(Metric metric) {
+    public boolean sendMetric(rb_cloudwatch.model.Metric metric) {
         boolean error = false; //Variable to indicate error status
 
         Collection<MetricDatum> l = new LinkedList<MetricDatum>();
@@ -37,16 +36,19 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
         logger.fine("Created AWS Metric data structures");
 
         metricRequest.setNamespace("RB/" + metric.getType());
+
         awsmetric.setMetricName(metric.getMonitor());
         awsmetric.setUnit(StandardUnit.Count); //TODO
         awsmetric.setTimestamp(metric.getTimestamp());
         awsmetric.setValue(metric.getValue());
+        metricRequest.setMetricData(l);
         logger.fine(awsmetric.toString());
 
         l.add(awsmetric);
         try {
-            metricRequest.setMetricData(l);
+
             client.putMetricData(metricRequest);
+            logger.log(Level.INFO, "putMetricData executed");
         } catch (AmazonServiceException e) {
             logger.log(Level.SEVERE, "Amazon Server Exception");
             logger.log(Level.FINE, e.getStackTrace().toString());

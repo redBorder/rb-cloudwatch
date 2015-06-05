@@ -1,4 +1,6 @@
-package rb_cloudwatch;
+package rb_cloudwatch.cloudwatch;
+
+import rb_cloudwatch.model.Metric;
 
 /**
  * Created by alberto on 2/6/15.

@@ -1,4 +1,4 @@
-package rb_cloudwatch;
+package rb_cloudwatch.model;
 
 import java.util.Date;
 
@@ -12,10 +12,12 @@ public interface Metric {
     public String getMonitor();
     public Double getValue();
     public String getType();
+    public String getUnit();
 
     public void setTimestamp(Date timestamp);
     public void setSensor_name(String sensorName);
     public void setMonitor(String monitor);
     public void setValue(Double value);
     public void setType(String type);
+    public void setUnit(String unit);
 }

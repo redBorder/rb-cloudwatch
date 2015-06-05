@@ -1,0 +1,9 @@
+{
+  "zookeeper_host" : "localhost",
+  "zookeeper_port" : "2181",
+  "kafka_consumer_group_id" : "1",
+  "zookeeper_session_timeout" : "400",
+  "zookeeper_sync_time" : "200",
+  "autocommit_interval" : "1000",
+  "kafka_topic" : "rb_monitor"
+}

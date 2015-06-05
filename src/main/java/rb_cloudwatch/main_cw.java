@@ -4,6 +4,7 @@ import com.amazonaws.services.cloudwatch.AmazonCloudWatch;
 import com.amazonaws.services.cloudwatch.AmazonCloudWatchClient;
 import com.amazonaws.services.cloudwatch.model.MetricDatum;
 import com.amazonaws.services.cloudwatch.model.PutMetricDataRequest;
+import rb_cloudwatch.kafka.Consumer;
 
 import java.util.Collection;
 import java.util.Date;
@@ -20,35 +21,15 @@ public class main_cw {
      *
      */
 
+
     public static void main (String[] args) {
 
-        AmazonCloudWatch service = new AmazonCloudWatchClient();
-
-        PutMetricDataRequest cw_data = new PutMetricDataRequest();
-        cw_data.setNamespace("PruebaJavaSDK");
+        //Applying configuration...
 
 
-        Collection<MetricDatum> l = new LinkedList<MetricDatum>();
 
+        //Consumer consumer = new Consumer();
 
-        while(true) {
-            MetricDatum metricdatum = new MetricDatum();
-            metricdatum.setMetricName("metricaDePruebaJava");
-            metricdatum.setUnit("Count");
-            metricdatum.setTimestamp(new Date());
-            metricdatum.setValue(Double.valueOf("5"));
-
-            l.add(metricdatum);
-
-            cw_data.setMetricData(l);
-            service.putMetricData(cw_data);
-
-            //Logger.getLogger("aloh").log(Level.INFO, "prueba");
-
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {}
-        }
 
     }
 }

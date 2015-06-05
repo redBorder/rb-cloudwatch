@@ -1,5 +1,7 @@
-package rb_cloudwatch;
+package rb_cloudwatch.model;
 
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
  * Created by alberto on 11/5/15.
@@ -12,14 +14,17 @@ public class MetricImpl implements Metric {
     private String monitor;
     private Double value;
     private String type;
+    private String unit;
 
     /* Constructors */
-    public MetricImpl(Date timestamp, String sensor_name, String monitor, Double value, String type) {
-        this.timestamp = timestamp;
+    public MetricImpl(String timestamp, String sensor_name, String monitor, String value, String type, String unit) {
+
+        this.timestamp = new Date(Long.parseLong(timestamp)*1000);
         this.sensor_name = sensor_name;
         this.monitor = monitor;
-        this.value = value;
+        this.value = Double.parseDouble(value);
         this.type = type;
+        this.unit = unit;
     }
 
     /* Methods */
@@ -38,6 +43,9 @@ public class MetricImpl implements Metric {
     public String getType() {
         return type;
     }
+    public String getUnit() {
+        return unit;
+    }
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
@@ -53,6 +61,9 @@ public class MetricImpl implements Metric {
     }
     public void setType(String type) {
         this.type = type;
+    }
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
 }
