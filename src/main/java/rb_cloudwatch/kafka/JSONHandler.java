@@ -4,6 +4,7 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.type.TypeReference;
 import rb_cloudwatch.model.Metric;
 import rb_cloudwatch.model.MetricImpl;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.logging.Logger;
 /**
  * Created by alberto on 7/5/15.
  */
-public class JSONHandler  {
+class JSONHandler  {
 
     private static final Logger logger = Logger.getLogger(JSONHandler.class.getName());
 

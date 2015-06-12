@@ -20,4 +20,6 @@ public interface Metric {
     public void setValue(Double value);
     public void setType(String type);
     public void setUnit(String unit);
+
+    public String toString();
 }

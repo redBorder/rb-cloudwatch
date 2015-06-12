@@ -12,6 +12,8 @@ public class Configuration {
     private String zookeeper_sync_time;
     private String autocommit_interval;
     private String kafka_topic;
+    private String thread_number;
+    private String region;
 
     public String getZookeeper_host() {
         return zookeeper_host;
@@ -54,6 +56,18 @@ public class Configuration {
     }
     public void setKafka_topic(String kafka_topic) {
         this.kafka_topic = kafka_topic;
+    }
+    public String getThread_number() {
+        return thread_number;
+    }
+    public void setThread_number(String thread_number) {
+        this.thread_number = thread_number;
+    }
+    public String getRegion() {
+        return region;
+    }
+    public void setRegion(String region) {
+        this.region = region;
     }
 
 }

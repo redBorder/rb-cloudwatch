@@ -51,6 +51,8 @@ public class ConfigurationHandler {
             config.setZookeeper_sync_time(ConfigurationHandler.checkProperty(map, "zookeeper_sync_time"));
             config.setAutocommit_interval(ConfigurationHandler.checkProperty(map, "autocommit_interval"));
             config.setKafka_topic(ConfigurationHandler.checkProperty(map, "kafka_topic"));
+            config.setThread_number(ConfigurationHandler.checkProperty(map, "thread_number"));
+            config.setRegion(ConfigurationHandler.checkProperty(map, "region"));
 
         //if there is an error reading configuration, program finish
         } catch (JsonParseException e) {
@@ -75,7 +77,7 @@ public class ConfigurationHandler {
      * @param config
      * @return
      */
-    private static ConsumerConfig createConsumerConfig(Configuration config) {
+    public static ConsumerConfig createConsumerConfig(Configuration config) {
         Properties props = new Properties(); //Configuration for
         props.put("zookeeper.connect", config.getZookeeper_host() + ":" + config.getZookeeper_port());
         props.put("group.id", config.getKafka_consumer_group_id());

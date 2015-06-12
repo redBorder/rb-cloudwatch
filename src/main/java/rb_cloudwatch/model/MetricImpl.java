@@ -1,7 +1,6 @@
 package rb_cloudwatch.model;
 
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
  * Created by alberto on 11/5/15.
@@ -66,4 +65,15 @@ public class MetricImpl implements Metric {
         this.unit = unit;
     }
 
+    @Override
+    public String toString() {
+        return "MetricImpl{" +
+                "\ntimestamp=" + timestamp +
+                ", \nsensor_name='" + sensor_name + '\'' +
+                ", \nmonitor='" + monitor + '\'' +
+                ", \nvalue=" + value +
+                ", \ntype='" + type + '\'' +
+                ", \nunit='" + unit + '\'' +
+                "\n}";
+    }
 }

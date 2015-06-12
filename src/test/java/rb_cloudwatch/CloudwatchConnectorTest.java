@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import rb_cloudwatch.cloudwatch.CloudwatchConnector;
 import rb_cloudwatch.cloudwatch.CloudwatchConnectorImpl;
+import rb_cloudwatch.configuration.Configuration;
 import rb_cloudwatch.model.Metric;
 import rb_cloudwatch.model.MetricImpl;
 
@@ -28,8 +29,9 @@ public class CloudwatchConnectorTest {
     @Test
     public void testSendMetric() throws Exception {
         Metric metric = new MetricImpl(new Date().toString(), "JunitSensorTest", "JunitTest", "2", "test", "Count");
-        CloudwatchConnector connector = new CloudwatchConnectorImpl();
+        Configuration configuration = new Configuration();
+        configuration.setRegion("eu-west-1");
+        CloudwatchConnector connector = new CloudwatchConnectorImpl(configuration);
         connector.sendMetric(metric);
-
     }
 }
