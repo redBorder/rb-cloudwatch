@@ -9,12 +9,10 @@ import com.amazonaws.services.cloudwatch.AmazonCloudWatchClient;
 import com.amazonaws.services.cloudwatch.model.Dimension;
 import com.amazonaws.services.cloudwatch.model.MetricDatum;
 import com.amazonaws.services.cloudwatch.model.PutMetricDataRequest;
-import com.amazonaws.services.cloudwatch.model.StandardUnit;
 import rb_cloudwatch.configuration.Configuration;
 import rb_cloudwatch.model.Metric;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +24,7 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
 
     /* Attributes */
     AmazonCloudWatch client;
-    Configuration configuration;
+    UnitMapping unitMapping;
     //Logger for this class
     private static final Logger logger = Logger.getLogger(CloudwatchConnectorImpl.class.getName());
 
@@ -34,6 +32,8 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
     public CloudwatchConnectorImpl(Configuration configuration) {
         this.client = new AmazonCloudWatchClient();
         client.setRegion(Region.getRegion(Regions.fromName(configuration.getRegion())));
+        unitMapping = new UnitMapping();
+
     }
 
     @Override
@@ -48,9 +48,8 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
         metricRequest.setNamespace("RB/" + metric.getType());
 
         awsmetric.setMetricName(metric.getMonitor());
-        awsmetric.setUnit(StandardUnit.Count); //TODO
-        //awsmetric.setTimestamp(metric.getTimestamp());
-        awsmetric.setTimestamp(new Date());
+        awsmetric.setUnit(unitMapping.getMappedUnit(metric.getUnit()));
+        awsmetric.setTimestamp(metric.getTimestamp());
         awsmetric.setValue(metric.getValue());
         Dimension instanceId = new Dimension();
         instanceId.setName("InstanceId");
@@ -61,7 +60,6 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
         metricRequest.setMetricData(l);
         logger.info(awsmetric.toString());
 
-        l.add(awsmetric);
         try {
 
             client.putMetricData(metricRequest);

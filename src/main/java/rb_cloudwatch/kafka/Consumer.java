@@ -37,7 +37,7 @@ class Consumer implements Runnable {
                 //First, consume a message and generate a Metric object with information consumed
                 String message = new String(iterator.next().message());
                 Metric metric = jsonHandler.processJSON(message);
-                logger.info("Thread " + threadNumber.toString() + "consumed a message. Metric object generated\n" + metric.toString());
+                logger.info("Thread " + threadNumber.toString() + " consumed a message. Metric object generated\n" + metric.toString());
                 //Then, send this metric to AWS Cloudwatch service
                 cloudwatchConnector.sendMetric(metric);
             } catch (Exception e) {

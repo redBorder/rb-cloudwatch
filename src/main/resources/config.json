@@ -5,7 +5,7 @@
   "zookeeper_session_timeout" : "400",
   "zookeeper_sync_time" : "200",
   "autocommit_interval" : "1000",
-  "kafka_topic" : "rb-monitor",
+  "kafka_topic" : "rb_monitor",
   "thread_number" : "2",
   "region" : "eu-west-1"
 }

@@ -3,9 +3,8 @@ package rb_cloudwatch.kafka;
 import org.junit.Test;
 import rb_cloudwatch.model.Metric;
 
-import java.util.Map;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by alberto on 4/6/15.
@@ -32,7 +31,7 @@ public class JSONHandlerTest {
         }
 
         try {
-            metric = jsonHandler.processJSON("jsonmalformed");
+            jsonHandler.processJSON("jsonmalformed");
             assertTrue(false);
         } catch (Exception e) {
             assertTrue(true);

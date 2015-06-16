@@ -16,13 +16,21 @@ public class main_cw {
      */
     public static void main (String[] args) {
 
-        //Applying configuration...
-        Configuration configuration = ConfigurationHandler.readConfiguration(args[0]);
-        //Creating class to connect with AWS
-        CloudwatchConnector cloudwatchConnector = new CloudwatchConnectorImpl(configuration);
-        //Creating kafka consumer threads
-        ConsumerGroup consumerGroup = new ConsumerGroup(configuration, cloudwatchConnector);
-        consumerGroup.run();
-        while(true);
+        if(args.length < 2) {
+            Configuration configuration = null;
+            if (args.length == 1) {
+                //Applying configuration...
+                configuration = ConfigurationHandler.readConfiguration(args[0]);
+            } else if (args.length == 0) {
+                configuration = ConfigurationHandler.readConfiguration("/rb_cloudwatch/resources/config.json");
+            }
+            //Creating class to connect with AWS
+            CloudwatchConnector cloudwatchConnector = new CloudwatchConnectorImpl(configuration);
+            //Creating kafka consumer threads
+            ConsumerGroup consumerGroup = new ConsumerGroup(configuration, cloudwatchConnector);
+            consumerGroup.run();
+        } else {
+            System.out.println("Arguments: [ Configfile ]");
+        }
     }
 }
