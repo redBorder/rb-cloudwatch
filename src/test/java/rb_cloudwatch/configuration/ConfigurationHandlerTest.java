@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by alberto on 2/6/15.
@@ -25,8 +25,7 @@ public class ConfigurationHandlerTest {
     @Test
     public void testReadConfiguration() throws Exception {
         Configuration config = ConfigurationHandler.readConfiguration("src/test/testResources/config.json");
-        assertEquals(config.getZookeeper_host(), "localhost");
-        assertEquals(config.getZookeeper_port(), "2181");
+        assertEquals(config.getZk_connect(), "localhost:2181");
         assertEquals(config.getKafka_consumer_group_id(), "1");
         assertEquals(config.getZookeeper_session_timeout(), "400");
         assertEquals(config.getZookeeper_sync_time(), "200");

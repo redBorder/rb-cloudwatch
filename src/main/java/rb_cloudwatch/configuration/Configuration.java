@@ -5,8 +5,7 @@ package rb_cloudwatch.configuration;
  */
 public class Configuration {
 
-    private String zookeeper_host;
-    private String zookeeper_port;
+    private String zk_connect;
     private String kafka_consumer_group_id;
     private String zookeeper_session_timeout;
     private String zookeeper_sync_time;
@@ -15,17 +14,11 @@ public class Configuration {
     private String thread_number;
     private String region;
 
-    public String getZookeeper_host() {
-        return zookeeper_host;
+    public String getZk_connect() {
+        return zk_connect;
     }
-    public void setZookeeper_host(String zookeeper_host) {
-        this.zookeeper_host = zookeeper_host;
-    }
-    public String getZookeeper_port() {
-        return zookeeper_port;
-    }
-    public void setZookeeper_port(String zookeeper_port) {
-        this.zookeeper_port = zookeeper_port;
+    public void setZk_connect(String zk_connect) {
+        this.zk_connect = zk_connect;
     }
     public String getKafka_consumer_group_id() {
         return kafka_consumer_group_id;

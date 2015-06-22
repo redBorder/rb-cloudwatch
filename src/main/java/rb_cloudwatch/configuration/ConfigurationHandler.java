@@ -44,8 +44,7 @@ public class ConfigurationHandler {
             map = jacksonMapper.readValue(src, new TypeReference<HashMap<String, String>>(){});
 
             //Generating POJO object with configuration
-            config.setZookeeper_host(ConfigurationHandler.checkProperty(map, "zookeeper_host"));
-            config.setZookeeper_port(ConfigurationHandler.checkProperty(map, "zookeeper_port"));
+            config.setZk_connect(ConfigurationHandler.checkProperty(map, "zk_connect"));
             config.setKafka_consumer_group_id(ConfigurationHandler.checkProperty(map, "kafka_consumer_group_id"));
             config.setZookeeper_session_timeout(ConfigurationHandler.checkProperty(map, "zookeeper_session_timeout"));
             config.setZookeeper_sync_time(ConfigurationHandler.checkProperty(map, "zookeeper_sync_time"));
@@ -79,7 +78,7 @@ public class ConfigurationHandler {
      */
     public static ConsumerConfig createConsumerConfig(Configuration config) {
         Properties props = new Properties(); //Configuration for
-        props.put("zookeeper.connect", config.getZookeeper_host() + ":" + config.getZookeeper_port());
+        props.put("zookeeper.connect", config.getZk_connect());
         props.put("group.id", config.getKafka_consumer_group_id());
         props.put("zookeeper.session.timeout.ms", config.getZookeeper_session_timeout());
         props.put("zookeeper.sync.time.ms", config.getZookeeper_session_timeout());

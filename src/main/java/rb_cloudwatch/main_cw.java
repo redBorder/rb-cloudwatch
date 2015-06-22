@@ -12,18 +12,14 @@ import rb_cloudwatch.kafka.ConsumerGroup;
  */
 public class main_cw {
     /**
-     *
+     *  rb_cloudwatch main class. Starts reading configuration and then initiate Kafka consumer to get events.
      */
     public static void main (String[] args) {
-
-        if(args.length < 2) {
+        System.out.println(args.length);
+        if(args.length == 1) {
             Configuration configuration = null;
-            if (args.length == 1) {
-                //Applying configuration...
-                configuration = ConfigurationHandler.readConfiguration(args[0]);
-            } else if (args.length == 0) {
-                configuration = ConfigurationHandler.readConfiguration("/rb_cloudwatch/resources/config.json");
-            }
+            //Applying configuration...
+            configuration = ConfigurationHandler.readConfiguration(args[0]);
             //Creating class to connect with AWS
             CloudwatchConnector cloudwatchConnector = new CloudwatchConnectorImpl(configuration);
             //Creating kafka consumer threads
