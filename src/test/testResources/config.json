@@ -1,6 +1,5 @@
 {
-  "zookeeper_host" : "localhost",
-  "zookeeper_port" : "2181",
+  "zk_connect" : "localhost:2181",
   "kafka_consumer_group_id" : "1",
   "zookeeper_session_timeout" : "400",
   "zookeeper_sync_time" : "200",
