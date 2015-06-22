@@ -10,7 +10,7 @@ import rb_cloudwatch.kafka.ConsumerGroup;
 /**
  * Created by alberto on 7/5/15.
  */
-public class main_cw {
+public class Main_cw {
     /**
      *  rb_cloudwatch main class. Starts reading configuration and then initiate Kafka consumer to get events.
      */

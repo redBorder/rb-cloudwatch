@@ -6,7 +6,13 @@
 
     <groupId>rb_cloudwatch</groupId>
     <artifactId>rb_cloudwatch</artifactId>
-    <version>0.1</version>
+    <version>0.1-SNAPSHOT</version>
+
+    <scm>
+        <developerConnection>scm:git:git@gitlab.redborder.lan:arodriguez.ext/rb_cloudwatch.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
 
     <repositories>
 
@@ -61,9 +67,11 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <finalName>${project.artifactId}-${project.version}-selfcontained</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>
-                            <mainClass>rb_cloudwatch.main_cw</mainClass>
+                            <mainClass>rb_cloudwatch.Main_cw</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -76,6 +84,12 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.1</version>
             </plugin>
 
             <plugin>
@@ -99,23 +113,15 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.5.1</version>
-            </plugin>
-
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.1</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>7</source>
+                    <target>7</target>
                 </configuration>
             </plugin>
-
-
         </plugins>
+
     </build>
 
     <properties>
