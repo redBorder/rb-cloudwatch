@@ -63,7 +63,7 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
         try {
 
             client.putMetricData(metricRequest);
-            logger.log(Level.INFO, "putMetricData executed");
+            logger.fine(Level.INFO, "putMetricData executed");
         } catch (AmazonServiceException e) {
             logger.log(Level.SEVERE, "Amazon Server Exception", e);
             error = true;
