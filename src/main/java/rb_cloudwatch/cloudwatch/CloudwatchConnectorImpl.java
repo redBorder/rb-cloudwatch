@@ -25,6 +25,7 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
     /* Attributes */
     AmazonCloudWatch client;
     UnitMapping unitMapping;
+    Configuration configuration;
     //Logger for this class
     private static final Logger logger = Logger.getLogger(CloudwatchConnectorImpl.class.getName());
 
@@ -33,7 +34,7 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
         this.client = new AmazonCloudWatchClient();
         client.setRegion(Region.getRegion(Regions.fromName(configuration.getRegion())));
         unitMapping = new UnitMapping();
-
+        this.configuration = configuration;
     }
 
     @Override
@@ -53,7 +54,12 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
         awsmetric.setValue(metric.getValue());
         Dimension instanceId = new Dimension();
         instanceId.setName("InstanceId");
-        instanceId.setValue("i-" + metric.getSensor_name().substring(1));
+        if(configuration.getIs_aws().equals("true")) {
+            instanceId.setValue("i-" + metric.getSensor_name().substring(1));
+        } else {
+            instanceId.setValue(metric.getSensor_name());
+        }
+
         awsmetric.withDimensions(instanceId);
 
         l.add(awsmetric);

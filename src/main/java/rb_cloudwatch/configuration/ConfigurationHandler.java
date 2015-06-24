@@ -28,6 +28,7 @@ public class ConfigurationHandler {
      */
     public static Configuration readConfiguration(String srcPath) {
 
+        logger.info("Reading configuration file " + srcPath );
         Map<String, String> map = new HashMap<String, String>();    //Hash map with JSON values
         //Object that process JSON data
         org.codehaus.jackson.map.ObjectMapper jacksonMapper = new org.codehaus.jackson.map.ObjectMapper();
@@ -52,6 +53,11 @@ public class ConfigurationHandler {
             config.setKafka_topic(ConfigurationHandler.checkProperty(map, "kafka_topic"));
             config.setThread_number(ConfigurationHandler.checkProperty(map, "thread_number"));
             config.setRegion(ConfigurationHandler.checkProperty(map, "region"));
+            try {
+                config.setIs_aws(map.get("is_aws"));
+            } catch (NullPointerException e) {
+                logger.warning("Parameter is_aws not found in configuration file, setting to false");
+            }
 
         //if there is an error reading configuration, program finish
         } catch (JsonParseException e) {
