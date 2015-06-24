@@ -58,7 +58,7 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
 
         l.add(awsmetric);
         metricRequest.setMetricData(l);
-        logger.info(awsmetric.toString());
+        logger.fine(awsmetric.toString());
 
         try {
 
