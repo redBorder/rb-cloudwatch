@@ -26,7 +26,7 @@ public class ConfigurationHandlerTest {
     public void testReadConfiguration() throws Exception {
         Configuration config = ConfigurationHandler.readConfiguration("src/test/testResources/config.json");
         assertEquals(config.getZk_connect(), "localhost:2181");
-        assertEquals(config.getKafka_consumer_group_id(), "1");
+        assertEquals(config.getKafka_consumer_group_id(), "rb-cloudwatch");
         assertEquals(config.getZookeeper_session_timeout(), "400");
         assertEquals(config.getZookeeper_sync_time(), "200");
         assertEquals(config.getAutocommit_interval(), "1000");
