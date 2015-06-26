@@ -54,6 +54,9 @@ public class ConfigurationHandler {
             config.setThread_number(ConfigurationHandler.checkProperty(map, "thread_number"));
             config.setRegion(ConfigurationHandler.checkProperty(map, "region"));
             config.setNamespace(ConfigurationHandler.checkProperty(map, "namespace"));
+            config.setAws_key(ConfigurationHandler.checkProperty(map, "accesskey"));
+            config.setAws_secret(ConfigurationHandler.checkProperty(map, "secretkey"));
+
             try {
                 config.setIs_aws(map.get("is_aws"));
             } catch (NullPointerException e) {

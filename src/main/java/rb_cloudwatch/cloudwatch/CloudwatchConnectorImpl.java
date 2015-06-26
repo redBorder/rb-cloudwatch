@@ -2,6 +2,7 @@ package rb_cloudwatch.cloudwatch;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cloudwatch.AmazonCloudWatch;
@@ -31,7 +32,8 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
 
     /* Constructors */
     public CloudwatchConnectorImpl(Configuration configuration) {
-        this.client = new AmazonCloudWatchClient();
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials(configuration.getAws_key(), configuration.getAws_secret());
+        this.client = new AmazonCloudWatchClient(awsCreds);
         client.setRegion(Region.getRegion(Regions.fromName(configuration.getRegion())));
         unitMapping = new UnitMapping();
         this.configuration = configuration;
