@@ -6,6 +6,6 @@
   "autocommit_interval" : "1000",
   "kafka_topic" : "rb_monitor",
   "thread_number" : "2",
-  "region" : "eu-west-1"
+  "region" : "eu-west-1",
   "namespace" : "testNamespace"
 }
