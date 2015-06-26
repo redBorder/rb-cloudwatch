@@ -4,11 +4,11 @@
 
     <groupId>rb_cloudwatch</groupId>
     <artifactId>rb_cloudwatch</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.8-SNAPSHOT</version>
 
     <scm>
         <developerConnection>scm:git:git@gitlab.redborder.lan:arodriguez.ext/rb_cloudwatch.git</developerConnection>
-        <tag>rb_cloudwatch-1.0.6</tag>
+        <tag>HEAD</tag>
     </scm>
 
 
