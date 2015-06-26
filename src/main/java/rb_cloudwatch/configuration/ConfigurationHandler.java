@@ -53,6 +53,7 @@ public class ConfigurationHandler {
             config.setKafka_topic(ConfigurationHandler.checkProperty(map, "kafka_topic"));
             config.setThread_number(ConfigurationHandler.checkProperty(map, "thread_number"));
             config.setRegion(ConfigurationHandler.checkProperty(map, "region"));
+            config.setNamespace(ConfigurationHandler.checkProperty(map, "namespace"));
             try {
                 config.setIs_aws(map.get("is_aws"));
             } catch (NullPointerException e) {

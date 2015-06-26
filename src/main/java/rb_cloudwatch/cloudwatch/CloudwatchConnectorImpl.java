@@ -46,7 +46,7 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
         PutMetricDataRequest metricRequest = new PutMetricDataRequest();
         logger.fine("Created AWS Metric data structures");
 
-        metricRequest.setNamespace("RB/" + metric.getType());
+        metricRequest.setNamespace(configuration.getNamespace());
 
         awsmetric.setMetricName(metric.getMonitor());
         awsmetric.setUnit(unitMapping.getMappedUnit(metric.getUnit()));

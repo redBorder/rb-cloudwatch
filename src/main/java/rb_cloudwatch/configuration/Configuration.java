@@ -14,6 +14,9 @@ public class Configuration {
     private String thread_number;
     private String region;
     private String is_aws;
+    private String namespace;
+
+
 
     public String getZk_connect() {
         return zk_connect;
@@ -69,5 +72,12 @@ public class Configuration {
     public void setIs_aws(String is_aws) {
         this.is_aws = is_aws;
     }
+    public String getNamespace() {
+        return namespace;
+    }
+    public void setNamespace(String namespace) {
+        this.namespace = namespace;
+    }
+
 
 }
