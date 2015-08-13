@@ -57,12 +57,6 @@ public class ConfigurationHandler {
             config.setAws_key(ConfigurationHandler.checkProperty(map, "accesskey"));
             config.setAws_secret(ConfigurationHandler.checkProperty(map, "secretkey"));
 
-            try {
-                config.setIs_aws(map.get("is_aws"));
-            } catch (NullPointerException e) {
-                logger.warning("Parameter is_aws not found in configuration file, setting to false");
-            }
-
         //if there is an error reading configuration, program finish
         } catch (JsonParseException e) {
             logger.log(Level.SEVERE, "Error reading JSON configuration file, exiting...", e);

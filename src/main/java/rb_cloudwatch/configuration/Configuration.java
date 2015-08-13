@@ -13,7 +13,6 @@ public class Configuration {
     private String kafka_topic;
     private String thread_number;
     private String region;
-    private String is_aws;
     private String namespace;
     private String aws_key;
     private String aws_secret;
@@ -96,14 +95,6 @@ public class Configuration {
 
     public void setRegion(String region) {
         this.region = region;
-    }
-
-    public String getIs_aws() {
-        return is_aws;
-    }
-
-    public void setIs_aws(String is_aws) {
-        this.is_aws = is_aws;
     }
 
     public String getNamespace() {

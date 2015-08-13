@@ -18,6 +18,8 @@ public class UnitMapping{
         map.put("ms", "Milliseconds");
         map.put("", "None");
         map.put("msgs", "Count");
+        map.put("tasks", "Count");
+        map.put("desired_capacity", "None");
     }
 
     public String getMappedUnit(String unit) {

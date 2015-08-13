@@ -56,12 +56,7 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
         awsmetric.setValue(metric.getValue());
         Dimension instanceId = new Dimension();
         instanceId.setName("InstanceId");
-        if(configuration.getIs_aws().equals("true")) {
-            instanceId.setValue("i-" + metric.getSensor_name().substring(1));
-        } else {
-            instanceId.setValue(metric.getSensor_name());
-        }
-
+        instanceId.setValue(metric.getSensor_name());
         awsmetric.withDimensions(instanceId);
 
         l.add(awsmetric);
