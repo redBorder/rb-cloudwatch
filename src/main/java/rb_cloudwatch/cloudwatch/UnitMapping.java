@@ -19,13 +19,13 @@ public class UnitMapping{
         map.put("", "None");
         map.put("msgs", "Count");
         map.put("tasks", "Count");
-        map.put("desired_capacity", "None");
+        map.put("task%", "None");
     }
 
     public String getMappedUnit(String unit) {
         String awsUnit = map.get(unit);
         if(awsUnit == null) {
-            logger.warning("Unit " + unit + "not found in map, using AWS unit None");
+            logger.warning("Unit " + unit + " not found in map, using AWS unit None");
             awsUnit = "None";
         }
         return awsUnit;
