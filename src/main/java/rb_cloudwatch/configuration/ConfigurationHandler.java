@@ -2,6 +2,7 @@ package rb_cloudwatch.configuration;
 
 import kafka.consumer.ConsumerConfig;
 import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
 import org.codehaus.jackson.type.TypeReference;
 
 import java.io.File;
@@ -42,20 +43,10 @@ public class ConfigurationHandler {
             src = new File(srcPath);
         }
         try {
-            map = jacksonMapper.readValue(src, new TypeReference<HashMap<String, String>>(){});
-
-            //Generating POJO object with configuration
-            config.setZk_connect(ConfigurationHandler.checkProperty(map, "zk_connect"));
-            config.setKafka_consumer_group_id(ConfigurationHandler.checkProperty(map, "kafka_consumer_group_id"));
-            config.setZookeeper_session_timeout(ConfigurationHandler.checkProperty(map, "zookeeper_session_timeout"));
-            config.setZookeeper_sync_time(ConfigurationHandler.checkProperty(map, "zookeeper_sync_time"));
-            config.setAutocommit_interval(ConfigurationHandler.checkProperty(map, "autocommit_interval"));
-            config.setKafka_topic(ConfigurationHandler.checkProperty(map, "kafka_topic"));
-            config.setThread_number(ConfigurationHandler.checkProperty(map, "thread_number"));
-            config.setRegion(ConfigurationHandler.checkProperty(map, "region"));
-            config.setNamespace(ConfigurationHandler.checkProperty(map, "namespace"));
-            config.setAws_key(ConfigurationHandler.checkProperty(map, "accesskey"));
-            config.setAws_secret(ConfigurationHandler.checkProperty(map, "secretkey"));
+            config = jacksonMapper.readValue(src, Configuration.class);
+            config.getFilter().createAllowedInstanceIdsHashSet();
+            config.getFilter().createAllowedMetricNamesHashSet();
+            System.out.println(config.toString());
 
         //if there is an error reading configuration, program finish
         } catch (JsonParseException e) {
@@ -74,6 +65,7 @@ public class ConfigurationHandler {
         return config;
     }
 
+
     /**
      * Static method that creates a ConsumerConfig object with the configuration contained in a Configuration object.
      * readConfiguration method must be executed before execute this method.
@@ -88,22 +80,5 @@ public class ConfigurationHandler {
         props.put("zookeeper.sync.time.ms", config.getZookeeper_session_timeout());
         props.put("auto.commit.interval.ms", config.getAutocommit_interval());
         return new ConsumerConfig(props);
-    }
-
-    /**
-     * Static method that check if exist the parameter in the JSON configuration file. If it do not exists,
-     * throws an Exception
-     * @param map
-     * @param property
-     * @return
-     * @throws Exception
-     */
-    private static String checkProperty(Map<String, String> map, String property) throws Exception {
-        String parameter = map.get(property);
-        if(parameter.isEmpty()) {
-            throw new Exception(property + "not especified");
-        } else {
-            return parameter;
-        }
     }
 }
