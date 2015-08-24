@@ -7,6 +7,15 @@
   "kafka_topic" : "rb_monitor",
   "thread_number" : "2",
   "region" : "eu-west-1",
-  "is_aws" : "true",
-  "namespace" : "testNamespace"
+  "accesskey" : "",
+  "secretkey" : "",
+  "namespace" : "testNamespace",
+  "filter" : {
+    "allowedMetricNames" : [
+      "desired_capacity, pending_tasks"
+    ],
+    "allowedInstanceIds" : [
+      "*"
+    ]
+  }
 }

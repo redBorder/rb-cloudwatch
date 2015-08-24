@@ -1,14 +1,20 @@
 {
   "zk_connect" : "localhost:2181",
-  "kafka_consumer_group_id" : "rb-cloudwatch",
+  "kafka_consumer_group_id" : "1",
   "zookeeper_session_timeout" : "400",
   "zookeeper_sync_time" : "200",
   "autocommit_interval" : "1000",
   "kafka_topic" : "rb_monitor",
-  "thread_number" : "3",
-  "accesskey": "AAAAA",
-  "secretkey": "BBBBB",
-  "namespace": "rB/E2E-SJ",
-  "region" : "us-west-2",
-  "is_aws" : "false"
+  "thread_number" : "2",
+  "region" : "eu-west-1",
+  "is_aws" : "true",
+  "namespace" : "testNamespace",
+  "filter" : {
+    "allowedMetricNames" : [
+      "desired_capacity, pending_tasks"
+    ],
+    "allowedInstanceIds" : [
+      "*"
+    ]
+  }
 }

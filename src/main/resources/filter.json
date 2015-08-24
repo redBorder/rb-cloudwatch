@@ -1,0 +1,8 @@
+{
+"allowedMetricNames" : [
+"desired_capacity, pending_tasks"
+],
+"allowedInstanceIds" : [
+"*"
+]
+}

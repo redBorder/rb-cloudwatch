@@ -45,7 +45,7 @@ public class ConsumerGroup {
         //Create object to consume messages
         int threadNumber = 0;
         for (KafkaStream stream : streams) {
-            executor.submit(new Consumer(cloudwatchConnector, stream, threadNumber));
+            executor.submit(new Consumer(cloudwatchConnector, config.getFilter(), stream, threadNumber));
             logger.info("Started thread number " + threadNumber);
             threadNumber++;
         }

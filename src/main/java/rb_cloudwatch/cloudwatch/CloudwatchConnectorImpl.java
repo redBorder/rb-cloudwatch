@@ -32,7 +32,7 @@ public class CloudwatchConnectorImpl implements CloudwatchConnector {
 
     /* Constructors */
     public CloudwatchConnectorImpl(Configuration configuration) {
-        BasicAWSCredentials awsCreds = new BasicAWSCredentials(configuration.getAws_key(), configuration.getAws_secret());
+        BasicAWSCredentials awsCreds = new BasicAWSCredentials(configuration.getAccesskey(), configuration.getSecretkey());
         this.client = new AmazonCloudWatchClient(awsCreds);
         client.setRegion(Region.getRegion(Regions.fromName(configuration.getRegion())));
         unitMapping = new UnitMapping();
