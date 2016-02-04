@@ -15,7 +15,6 @@ public class Main_cw {
      *  rb_cloudwatch main class. Starts reading configuration and then initiate Kafka consumer to get events.
      */
     public static void main (String[] args) {
-        System.out.println(args.length);
         if(args.length == 1) {
             //Applying configuration...
             Configuration configuration = ConfigurationHandler.readConfiguration(args[0]);
