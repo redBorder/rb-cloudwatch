@@ -1,5 +1,5 @@
 
 node {
-  sh 'echo prueba > 'prueba.txt'
+  sh 'echo prueba > "prueba.txt"'
 }
 
