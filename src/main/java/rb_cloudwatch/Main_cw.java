@@ -17,7 +17,7 @@ public class Main_cw {
     public static void main (String[] args) {
         if(args.length == 1) {
             //Applying configuration...
-            Configuration configuration = ConfigurationHandler.readConfiguration(args[0]);
+            Csdfonfiguration configuration = ConfigurationHandler.readConfiguration(args[0]);
             //Creating class to connect with AWS
             CloudwatchConnector cloudwatchConnector = new CloudwatchConnectorImpl(configuration);
             //Creating kafka consumer threads
