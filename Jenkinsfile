@@ -1,4 +1,3 @@
-
 stage 'Compilation'
 node ('runner') {
 	git branch: 'continuous-integration', credentialsId: 'jenkins_id', url: 'git@gitlab.redborder.lan:arodriguez/rb_cloudwatch.git'
@@ -8,7 +7,7 @@ node ('runner') {
 	stage 'Copy to preproduction'
     stash includes: 'target/rb_cloudwatch*-selfcontained.jar', name: 'rb-cloudwatch'
 }
-node ('prep-manager') {
+node ('jenkins-premanager1') {
     unstash 'rb-cloudwatch'
 
 	stage 'Update service'
