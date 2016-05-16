@@ -1,10 +1,13 @@
 
-node ('runner') {
+node ('docker') {
 	stage 'Compilation'
-	git branch: 'continuous-integration', credentialsId: 'jenkins_id', url: 'git@gitlab.redborder.lan:arodriguez/rb_cloudwatch.git'
-	def mvnHome = tool 'M3'
-	sh "${mvnHome}/bin/mvn clean package"
-	stash includes: 'target/rb_cloudwatch*-selfcontained.jar', name: 'rb-cloudwatch'
+        stage 'Run maven docker image'
+        def maven = docker.image('maven:latest')
+        maven.inside('-v /tmp/docker-m2cache:/root/.m2:rw'){
+                git branch: 'continuous-integration', credentialsId: 'jenkins_id', url: 'git@gitlab.redborder.lan:arodriguez/rb_cloudwatch.git'
+        	sh 'mvn clean package'
+              	stash includes: 'target/rb_cloudwatch*-selfcontained.jar', name: 'rb-cloudwatch'
+        }	
 }
 node ('prep-manager') {
         stage 'Copy to preproduction'
