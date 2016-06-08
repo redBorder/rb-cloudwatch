@@ -12,6 +12,7 @@ node ('prep-manager') {
     unstash 'rb-cloudwatch'
 
 	stage 'Update service'
+	sh 'rm -f /opt/rb/var/rb-cloudwatch/app/rb_cloudwatch*-selfcontained.jar'
 	sh 'cp target/rb_cloudwatch*-selfcontained.jar /opt/rb/var/rb-cloudwatch/app/'
 	sh '/opt/rb/bin/rb_manager_scp.sh all /opt/rb/var/rb-cloudwatch/app/rb_cloudwatch*-selfcontained.jar'
 	sh '/opt/rb/bin/rb_service all restart rb-cloudwatch'
