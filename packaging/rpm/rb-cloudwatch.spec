@@ -6,7 +6,7 @@ License: GNU AGPLv3
 URL: https://github.com/redBorder/rb-cloudwatch
 Source0: %{name}-%{version}.tar.gz
 
-BuildRequires: apache-maven java-devel
+BuildRequires: maven java-devel
 
 Summary: Get monitor events from kafka and send them to aws cloudwatch service. 
 Group:   Services/Monitoring
@@ -48,5 +48,5 @@ exit 0
 /usr/lib/systemd/system/rb-cloudwatch.service
 
 %changelog
-* Fri Jun 10 2016 Alberto Rodriguez <arodriguez@redborder.com> - 1.0.0-1
+* Fri Jun 10 2016 Alberto Rodriguez <arodriguez@redborder.com> - 1.0.19-1
 - first spec version
