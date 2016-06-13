@@ -1,0 +1,11 @@
+[Unit]
+Description=send monitor data from kafka to aws cloudwatch service
+
+[Service]
+ExecStart='java -jar /usr/share/rb-cloudwatch/rb_cloudwatch.jar /etc/rb-cloudwatch/config.json'
+Restart=always
+User=rb-cloudwatch
+Group=rb-cloudwatch
+
+[Install]
+WantedBy=multi-user.target
