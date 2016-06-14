@@ -1,6 +1,3 @@
 
-package:
-	mvn clean package
-
-rpm: 
+rpm:  
 	$(MAKE) -C packaging/rpm
