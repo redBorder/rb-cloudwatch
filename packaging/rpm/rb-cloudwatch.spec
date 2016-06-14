@@ -49,5 +49,5 @@ exit 0
 /usr/lib/systemd/system/rb-cloudwatch.service
 
 %changelog
-* Fri Jun 10 2016 Alberto Rodriguez <arodriguez@redborder.com> - 1.0.19-1
+* Fri Jun 10 2016 Alberto Rodriguez <arodriguez@redborder.com> - 1.0.18-1
 - first spec version
