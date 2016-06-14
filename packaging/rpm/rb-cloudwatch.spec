@@ -25,16 +25,17 @@ mvn clean package
 mkdir -p %{buildroot}/usr/share/%{name}
 mkdir -p %{buildroot}/etc/%{name}
 install -D -m 644 rb-cloudwatch.service %{buildroot}/usr/lib/systemd/system/rb-cloudwatch.service
-install -D -m 644 src/main/resources/config.json %{buildroot}/etc/rb_cloudwatch/config.json
-install -D -m 644 target/rb_cloudwatch-*-selfcontained.jar %{buildroot}/usr/share/
+install -D -m 644 src/main/resources/config.json %{buildroot}/etc/%{name}/config.json
+install -D -m 644 target/rb_cloudwatch-*-selfcontained.jar %{buildroot}/usr/share/%{name}
+
 %clean
 rm -rf %{buildroot}
 
 %pre
-getent group rb-cloudwatch >/dev/null || groupadd -r rb-cloudwatch
-getent passwd rb-cloudwatch >/dev/null || \
-    useradd -r -g rb-cloudwatch -d / -s /sbin/nologin \
-    -c "User of rb-cloudwatch service" rb-cloudwatch
+getent group %{name} >/dev/null || groupadd -r %{name}
+getent passwd %{name} >/dev/null || \
+    useradd -r -g %{name} -d / -s /sbin/nologin \
+    -c "User of %{name} service" %{name}
 exit 0
 
 %post -p /sbin/ldconfig
@@ -42,9 +43,9 @@ exit 0
 
 %files
 %defattr(644,root,root)
-/usr/share/rb_cloudwatch/rb_cloudwatch-*-selfcontained.jar
+/usr/share/%{name}
 %defattr(644,root,root)
-/usr/share/rb_cloudwatch/config.json
+/etc/%{name}/config.json
 /usr/lib/systemd/system/rb-cloudwatch.service
 
 %changelog
